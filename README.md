@@ -7,8 +7,8 @@ Create an outbound stream over a message transport.
 In your agent.js:
 
 ```js
-const fs = require('@viaforensics/frida-fs');
-const RemoteStreamController = require('@viaforensics/frida-remote-stream');
+const fs = require('frida-fs');
+const RemoteStreamController = require('frida-remote-stream');
 
 const streams = new RemoteStreamController();
 streams.on('send', (stanza, data) => {
@@ -31,7 +31,7 @@ In your application:
 
 ```js
 const fs = require('fs');
-const RemoteStreamController = require('@viaforensics/frida-remote-stream');
+const RemoteStreamController = require('frida-remote-stream');
 
 const streams = new RemoteStreamController();
 streams.on('send', (stanza, data) => {

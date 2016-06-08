@@ -1,5 +1,5 @@
 {
-  "name": "@viaforensics/frida-remote-stream",
+  "name": "frida-remote-stream",
   "version": "1.0.0",
   "description": "Create an outbound stream over a message transport",
   "main": "index.js",
@@ -17,12 +17,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viaforensics/frida-remote-stream.git"
+    "url": "git+https://github.com/nowsecure/frida-remote-stream.git"
   },
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/viaforensics/frida-remote-stream/issues"
+    "url": "https://github.com/nowsecure/frida-remote-stream/issues"
   },
-  "homepage": "https://github.com/viaforensics/frida-remote-stream#readme",
+  "homepage": "https://github.com/nowsecure/frida-remote-stream#readme",
   "dependencies": {
     "events": "^1.1.0",
     "stream": "0.0.2"
