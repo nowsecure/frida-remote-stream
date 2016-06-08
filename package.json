@@ -1,6 +1,6 @@
 {
   "name": "frida-remote-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create an outbound stream over a message transport",
   "main": "index.js",
   "browserify": {
