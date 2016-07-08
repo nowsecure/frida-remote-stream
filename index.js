@@ -72,6 +72,7 @@ class Sink extends stream.Writable {
     this._controller = controller;
     this._endpoint = endpoint;
 
+    this._controller._request('.create', { endpoint: this._endpoint }, null);
     this.once('finish', this._onFinish.bind(this));
   }
 
@@ -91,6 +92,7 @@ class Controller extends EventEmitter {
     super();
 
     this._handlers = {
+      '.create': this._onCreate.bind(this),
       '.finish': this._onFinish.bind(this),
       '.write': this._onWrite.bind(this)
     };
@@ -125,6 +127,13 @@ class Controller extends EventEmitter {
       throw new Error('Unknown stanza: ' + name);
   }
 
+  _onCreate(payload) {
+    const endpoint = payload.endpoint;
+    const source = new Source(this, endpoint);
+    this._sources[endpoint.id] = source;
+    this.emit('stream', source);
+  }
+
   _onFinish(payload) {
     const id = payload.endpoint.id;
     const source = this._sources[id];
@@ -133,16 +142,8 @@ class Controller extends EventEmitter {
   }
 
   _onWrite(payload, data) {
-    const endpoint = payload.endpoint;
-    const id = endpoint.id;
-
-    let source = this._sources[id];
-    if (source === undefined) {
-      source = new Source(this, endpoint);
-      this._sources[id] = source;
-      this.emit('stream', source);
-    }
-
+    const id = payload.endpoint.id;
+    const source = this._sources[id];
     return source._deliver(data);
   }
 
