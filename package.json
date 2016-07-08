@@ -23,9 +23,5 @@
   "bugs": {
     "url": "https://github.com/nowsecure/frida-remote-stream/issues"
   },
-  "homepage": "https://github.com/nowsecure/frida-remote-stream#readme",
-  "dependencies": {
-    "events": "^1.1.0",
-    "stream": "0.0.2"
-  }
+  "homepage": "https://github.com/nowsecure/frida-remote-stream#readme"
 }
