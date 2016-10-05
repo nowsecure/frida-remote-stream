@@ -35,10 +35,10 @@ const RemoteStreamController = require('frida-remote-stream');
 
 const streams = new RemoteStreamController();
 streams.on('send', (stanza, data) => {
-  script.postMessage({
+  script.post({
     type: '+stream',
     payload: stanza
-  });
+  }, data);
 });
 script.events.listen('message', (message, data) => {
   if (message.type === 'send') {
