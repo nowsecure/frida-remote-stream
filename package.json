@@ -3,6 +3,9 @@
   "version": "2.0.2",
   "description": "Create an outbound stream over a message transport",
   "main": "index.js",
+  "files": [
+    "/index.js"
+  ],
   "browserify": {
     "transform": [
       [
