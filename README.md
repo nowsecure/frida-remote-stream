@@ -10,21 +10,21 @@ In your agent.js:
 const fs = require('frida-fs');
 const RemoteStreamController = require('frida-remote-stream');
 
-const streams = new RemoteStreamController();
-streams.on('send', (stanza, data) => {
+const controller = new RemoteStreamController();
+controller.events.on('send', packet => {
   send({
     name: '+stream',
-    payload: stanza
-  }, data ? data.buffer : null);
+    payload: packet.stanza
+  }, packet.data);
 });
-function onStreamMessage(message) {
-  streams.receive(message.payload, null);
+function onStreamMessage(message, data) {
+  controller.receive({ stanza: message.payload, data });
 
   recv('+stream', onStreamMessage);
 }
 recv('+stream', onStreamMessage);
 
-fs.createReadStream('/very/large/file').pipe(streams.open('filedump', { meta: 'data' }));
+fs.createReadStream('/very/large/file').pipe(controller.open('filedump', { meta: 'data' }));
 ```
 
 In your application:
@@ -33,25 +33,25 @@ In your application:
 const fs = require('fs');
 const RemoteStreamController = require('frida-remote-stream');
 
-const streams = new RemoteStreamController();
-streams.on('send', (stanza, data) => {
+const controller = new RemoteStreamController();
+controller.events.on('send', packet => {
   script.post({
     type: '+stream',
-    payload: stanza
-  }, data);
+    payload: packet.stanza
+  }, packet.data);
 });
-script.events.listen('message', (message, data) => {
+script.message.connect((message, data) => {
   if (message.type === 'send') {
     const stanza = message.payload;
     switch (stanza.name) {
     case '+stream':
-      streams.receive(stanza.payload, data);
+      controller.receive({ stanza: stanza.payload, data });
       break;
     }
   }
 });
 
-streams.on('stream', stream => {
+controller.events.on('stream', stream => {
   // stream.details.meta === 'data'
 
   stream.pipe(fs.createWriteStream('/tmp/interesting-file'));

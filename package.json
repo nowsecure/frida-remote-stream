@@ -2,9 +2,11 @@
   "name": "frida-remote-stream",
   "version": "4.0.0",
   "description": "Create an outbound stream over a message transport",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "/index.js"
+    "/dist/index.js",
+    "/dist/index.d.ts"
   ],
   "repository": {
     "type": "git",
@@ -14,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/nowsecure/frida-remote-stream/issues"
   },
-  "homepage": "https://github.com/nowsecure/frida-remote-stream#readme"
+  "homepage": "https://github.com/nowsecure/frida-remote-stream#readme",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.7",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "typed-emitter": "^0.2.0"
+  }
 }
