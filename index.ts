@@ -111,7 +111,7 @@ export class Controller {
         try {
             result = handler(payload, data);
         } catch (e) {
-            this.reject(id, e);
+            this.reject(id, e as Error);
             return;
         }
 
