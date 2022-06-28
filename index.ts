@@ -170,10 +170,10 @@ export class Controller {
 
 export default Controller;
 
-interface ControllerEvents {
+type ControllerEvents = {
     stream: (stream: IncomingStream) => void;
     send: (packet: Packet) => void;
-}
+};
 
 interface RequestCallbacks {
     resolve: (value: StanzaPayload) => void;
