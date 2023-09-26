@@ -1,6 +1,6 @@
 import EventEmitter from "events";
 import { Readable, Writable } from "stream";
-import TypedEmitter from "typed-emitter";
+import type { TypedEmitter } from "tiny-typed-emitter";
 
 export class Controller {
     events = new EventEmitter() as TypedEmitter<ControllerEvents>;
