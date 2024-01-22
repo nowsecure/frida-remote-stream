@@ -1,6 +1,6 @@
 {
   "name": "frida-remote-stream",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "Create an outbound stream over a message transport",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
