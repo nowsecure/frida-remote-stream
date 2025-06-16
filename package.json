@@ -1,6 +1,6 @@
 {
   "name": "frida-remote-stream",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "Create an outbound stream over a message transport",
   "keywords": [
     "frida-gum"
